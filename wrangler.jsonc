@@ -1,0 +1,11 @@
+{
+  "name": "my-angular-worker", // Cloudflare may override this in CI
+  "compatibility_date": "2025-08-15",
+  "assets": {
+    // Angular 17+ defaults to dist/<app-name>/browser (see note below)
+    "directory": "dist/<your-app-name>/browser",
+    // SPA-friendly deep-linking: serve index.html on non-asset routes
+    "not_found_handling": "single-page-application"
+    // Optional: add "binding": "ASSETS" if you want to call env.ASSETS in a Worker script
+  }
+}
