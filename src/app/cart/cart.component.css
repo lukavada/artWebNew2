@@ -1,0 +1,310 @@
+* {
+    font-family: 'Noto Sans Georgian', sans-serif;
+}
+
+.cart-section {
+    padding: 32px;
+    max-width: 1360px;
+    margin: auto;
+}
+
+.ifIsEmpty {
+    padding-bottom: 100px;
+    padding-top: 100px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.ri-shopping-cart-line {
+    font-size: 70px;
+    color: rgba(35, 36, 36, 0.447);
+}
+
+.cart-empty-text {
+    font-size: 28px;
+    color: rgba(35, 36, 36, 0.447);
+}
+
+.continiue-shopping {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.product-left {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+
+}
+
+.product-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.all-products {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    justify-content: center;
+    margin: auto;
+    max-width: 900px;
+    width: 100%;
+}
+
+.cart-text {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.style,
+.artist,
+.size {
+    color: #c4c4c4;
+    font-size: 16px;
+}
+
+.product-price {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.artist-name {
+    color: rgb(64, 50, 164);
+    cursor: pointer;
+}
+
+.title {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.title:hover {
+    color: rgba(1, 146, 13, 0.805);
+}
+
+.left {
+    display: flex;
+    gap: 24px;
+}
+
+.right-content {
+    display: flex;
+
+    flex-direction: column;
+
+
+    margin-left: 24px;
+}
+
+.products {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 12px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.price {
+    margin-top: 100px;
+}
+
+
+.product-left img {
+    width: 150px;
+    height: 160px;
+    object-fit: cover;
+
+}
+
+
+
+.ifFull {
+    display: flex;
+    justify-content: center;
+    max-width: 1320px;
+    width: 100%;
+    gap: 30px;
+    margin: auto;
+}
+
+.total-price {
+    margin-top: 20px;
+    max-width: 400px;
+    width: 100%;
+    height: fit-content;
+
+    border: 1px solid rgba(58, 58, 58, 0.148);
+}
+
+.sum {
+
+
+    width: 100%;
+    background-color: #f7f8fa;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.sum-text {
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+
+.sum-price {
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.cupon {
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.input-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.order-button {
+    padding: 14px 20px;
+}
+
+.order {
+    background-color: #2d2e2c;
+    width: 100%;
+    color: white;
+    width: 100%;
+    padding: 10px 20px;
+
+}
+
+.input-info input {
+    width: 100%;
+    border: 1px solid rgba(58, 58, 58, 0.148);
+    padding: 6px 8px;
+}
+
+.input-info p {
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+
+}
+
+.cupon-info {
+    padding: 0px 20px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.addMoreWorks {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 24px;
+    padding-bottom: 50px;
+    margin-top: 10px;
+
+}
+
+.ri-heart-fill, .ri-heart-2-line {
+    font-size: 28px;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .ifFull {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .all-products {
+
+        width: 100%;
+    }
+
+    .total-price {
+        max-width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 550px) {
+    .left {
+        flex-direction: column;
+        gap: 8px;
+
+
+    }
+
+    .product-price {
+        margin-top: 200px;
+    }
+
+    .product-info {
+        margin: 0;
+    }
+
+}
+
+
+@media screen and (max-width: 400px) {
+    .product-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-price {
+        margin-top: -90px;
+    }
+
+    .left img {
+        justify-content: center;
+        display: flex;
+        margin: auto;
+    }
+
+
+}

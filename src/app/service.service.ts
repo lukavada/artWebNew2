@@ -1,11 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
+
+  private cartCountSubject = new BehaviorSubject<number>(0);
+  cartCount$ = this.cartCountSubject.asObservable();
+
+  private likedProductsSubject = new BehaviorSubject<number>(0);
+  likedProductsCount$ = this.likedProductsSubject.asObservable();
+
+  updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.cartCountSubject.next(cart.length);
+  }
+
+  updatelikeProductCount() {
+    const liked = JSON.parse(localStorage.getItem('LikedProducts') || '[]');
+    this.likedProductsSubject.next(liked.length);
+  }
+
+
+
+  
+
+
+
+
+
+  ProductsInCart!: number;
+
 
 
 
@@ -38,8 +67,20 @@ export class ServiceService {
   heightMaxValues!: any
   heightMinValues!: any
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.updateCartCount()
 
+
+  }
+
+   getGuestToken(): string {
+    let token = localStorage.getItem('guest_token');
+    if (!token) {
+      token = 'guest_' + Math.random().toString(36).substr(2, 10);
+      localStorage.setItem('guest_token', token);
+    }
+    return token;
+  }
 
 
   getArtists() {
@@ -133,11 +174,18 @@ export class ServiceService {
   }
 
 
-getAllArtists(initial: string = '', page: number = 1, limit: number = 12): Observable<any> {
-  const initialParam = initial ? `initial=${initial}&` : '';
-  const url = `https://artshop-backend-demo.fly.dev/artists?${initialParam}page=${page}&limit=${limit}`;
-  return this.http.get<any>(url);
-}
+  getAllArtists(initial: string = '', page: number = 1, limit: number = 12): Observable<any> {
+    const initialParam = initial ? `initial=${initial}&` : '';
+    const url = `https://artshop-backend-demo.fly.dev/artists?${initialParam}page=${page}&limit=${limit}`;
+    return this.http.get<any>(url);
+  }
+
+
+
+
+
+
+
 
 
 }

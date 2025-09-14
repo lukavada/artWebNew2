@@ -1,0 +1,74 @@
+<section class="cart-section">
+    <p class="cart-text">კალათა</p>
+    <div class="ifIsEmpty" *ngIf="cartIsEmpty">
+        <i class="ri-shopping-cart-line"></i>
+        <p class="cart-empty-text">თქვენი კალათა ცარიელია</p>
+        <p routerLink="/" class="continiue-shopping">დააჭირეთ აქ რათა გააგრძელოთ შოპინგი</p>
+    </div>
+
+    <div *ngIf="ifIsFull" class="ifFull">
+        <div class="all-products">
+            <div *ngFor="let product of cartItems" class="products">
+                <div class="product-left">
+                    <div class="left">
+                        <img [src]="product.image" alt="">
+                        <div class="product-info">
+                            <p [routerLink]="['/product', product.item_id]" class="title">დასახელება: {{product.title}}</p>
+                            <p class="style">სტილი: {{product.style}}</p>
+                            <p [routerLink]="['/eachArter', product.artist_id]" class="artist">
+                                ავტორი: <span class="artist-name">{{product.artist_name}}</span>
+                            </p>
+                            <p class="size">ზომა: {{product.width_cm}} x {{product.height_cm}}</p>
+                        </div>
+                    </div>
+                    <div class="right-content"></div>
+                    <div class="right">
+                        <div class="product-buttons">
+                            <i (click)="addToLikedProducts(product.id)" style="cursor: pointer;" class="heart"
+                                [ngClass]="product.isLiked ? 'ri-heart-fill' : 'ri-heart-2-line'">
+                            </i>
+                            <div (click)="removeFromBackendCart(product.cart_item_id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="delete-btn" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <p class="product-price">{{product.unit_price * (product.quantity || 1)}} $ </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="total-price">
+            <div class="sum">
+                <p class="sum-text">სულ:</p>
+                <p class="sum-price">{{ animatedTotalPrice }} $ </p>
+            </div>
+
+            <div class="cupon-info">
+                <div>
+                    <p class="cupon">შეიყვანეთ კუპონი ფასდაკლებისთვის</p>
+                </div>
+                <div class="input-info">
+                    <input type="text">
+                    <p>გამოყენება</p>
+                </div>
+            </div>
+
+            <div class="order-button">
+                <button class="order">შეკვეთის გაფორმება</button>
+            </div>
+
+            <div routerLink="/" class="addMoreWorks">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16" fill="none">
+                    <path d="M7 1L1 8L7 15" stroke="black" stroke-opacity="0.6" stroke-linecap="round"></path>
+                </svg>
+                <p>განაგრძეთ ნამუშევრების შერჩევა</p>
+            </div>
+        </div>
+    </div>
+</section>

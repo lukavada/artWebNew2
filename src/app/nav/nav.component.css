@@ -1,3 +1,8 @@
+body .goog-te-banner-frame.skiptranslate { display: none !important; }
+body { top: 0 !important; }
+
+
+
 nav {
     max-width: 1360px;
     margin: auto;
@@ -10,6 +15,32 @@ nav {
     display: flex;
     justify-content: space-between;
 }
+
+
+.slesh {
+    font-size: 20px;
+}
+
+
+
+.productsInCart {
+    position: absolute;
+    z-index: 9;
+    margin-left: 8px;
+    margin-top: 16px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    padding: 0;
+}
+
 
 .phone-number {
     color: #6C6C6C;
@@ -454,7 +485,9 @@ nav {
     border-bottom: 2px solid rgb(64, 50, 164)
 }
 
-
+.cart {
+    margin-top: 3px;
+}
 
 .products-popup {
     position: absolute;
@@ -611,6 +644,16 @@ nav {
 
 
 
+.languages-changes {
+    display: flex;
+    gap: 30px;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+
+
 
 
 
@@ -688,7 +731,7 @@ nav {
 }
 
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 800px) {
 
     .catalog-text {
         justify-content: center;

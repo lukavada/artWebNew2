@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ServiceService } from '../service.service';
+import { CartService } from '../cart.service';
+
+declare var google: any
 
 @Component({
   selector: 'app-nav',
@@ -7,17 +10,76 @@ import { ServiceService } from '../service.service';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
+export class NavComponent implements AfterViewInit {
+
+
+  ngAfterViewInit(): void {
+    this.loadGoogleTranslate();
+  }
+
+  loadGoogleTranslate() {
+    if (!(<any>window).google || !(<any>window).google.translate) {
+      const script = document.createElement('script');
+      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.body.appendChild(script);
+
+      (<any>window).googleTranslateElementInit = () => {
+        new google.translate.TranslateElement(
+          { pageLanguage: 'auto', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
+          'google_translate_element'
+        );
+      };
+    }
+  }
+
+  translateToEnglish() {
+    const iframe: HTMLIFrameElement | null = document.querySelector('iframe.goog-te-menu-frame');
+    if (iframe) {
+      const innerDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (innerDoc) {
+        const langButton = innerDoc.querySelector<HTMLAnchorElement>('a[href*="en"]');
+        if (langButton) langButton.click();
+      }
+    } else {
+      // fallback: change cookie and reload
+      this.setGoogleTranslateLang('en');
+    }
+  }
+
+  translateToGeorgian() {
+    // Reset Google Translate to original language
+    document.cookie = 'googtrans=/auto/auto;path=/;domain=' + location.hostname;
+    window.location.reload();
+  }
+
+
+  private setGoogleTranslateLang(lang: string) {
+    const cookieName = 'googtrans';
+    document.cookie = `${cookieName}=/auto/${lang};path=/`;
+    window.location.reload();
+  }
 
 
 
 
 
-  constructor(private service: ServiceService,) {
+
+
+  productsInCart: number = 0;
+  productsLiked: number = 0;
+
+
+
+  constructor(private service: ServiceService, private cartService: CartService) {
     this.service.getWholeProcucts().subscribe(data => {
       this.WholeProducts = data.items
+
+
     })
   }
+
+
+
 
 
 
@@ -28,10 +90,24 @@ export class NavComponent {
   isProductsTabOpen: boolean = false; // controls popup visibility
 
   ngOnInit() {
+    this.cartService.getBackEndCarts 
     this.service.getWholeProcucts().subscribe(data => {
       this.WholeProducts = data.items;
       this.products = [...this.WholeProducts];
+     
+      this.service.updateCartCount()
+      this.service.updatelikeProductCount()
     });
+
+    this.cartService.cartCount$.subscribe(count => {
+      this.productsInCart = count;
+      console.log("Cart count updated:", count);
+    });
+
+    this.service.likedProductsCount$.subscribe(count => {
+      this.productsLiked = count;
+    });
+
   }
 
   onSearch() {
